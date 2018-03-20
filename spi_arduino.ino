@@ -2,10 +2,9 @@
 
 const int M11 = 2;
 const int M12 = 4;
-const int M22 = 5;
-const int M21 = 1;
+const int M22 = 6;
+const int M21 = 7;
 const int speed1 = 3;
-const  int speed2 = 6;
 const int sl = 0;
 const int s = 8;
 const int sr = 9;
@@ -23,11 +22,11 @@ void setup() {
    pinMode(M22, OUTPUT);
    pinMode(M21, OUTPUT);
    pinMode(speed1, OUTPUT);
-   pinMode(speed2, OUTPUT);
+
    
-   pinMode(sl, INPUT);
+   /*pinMode(sl, INPUT);
    pinMode(s, INPUT);
-   pinMode(sr, INPUT);
+   pinMode(sr, INPUT);*/
    
 
 
@@ -36,7 +35,7 @@ void setup() {
    index = 0;
    receivedone = false;
    SPI.attachInterrupt();    /* Attach SPI interrupt */
-   Serial.begin(9600);      // open the serial port at 9600 bps:
+   Serial.begin(115200);      // open the serial port at 115200 bps:
    
 
 
@@ -68,7 +67,6 @@ ISR (SPI_STC_vect)
     //}
     if(c=='F')
     {
-      analogWrite(speed2, 40); // Set rotating motor speed
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
       digitalWrite(M22, LOW);
@@ -77,7 +75,6 @@ ISR (SPI_STC_vect)
     }
     if(c=='Q')
     {
-      analogWrite(speed2, 230); // Set rotating motor speed
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
       digitalWrite(M22, LOW);
@@ -86,7 +83,6 @@ ISR (SPI_STC_vect)
     }
     if(c=='B')
     {
-      analogWrite(speed2, 40); // Set rotating motor speed 
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
       digitalWrite(M22, HIGH);
@@ -95,7 +91,6 @@ ISR (SPI_STC_vect)
     }
     if(c=='W')
     { 
-      analogWrite(speed2, 230); // Set rotating motor speed 
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
       digitalWrite(M22, HIGH);
@@ -103,7 +98,7 @@ ISR (SPI_STC_vect)
       receivedone = true;
     }
     if(c=='L'){
-      analogWrite(speed1, 40); // Set rotating motor speed
+      analogWrite(speed1, 60); // Set rotating motor speed
       digitalWrite(M11, LOW);
       digitalWrite(M12, HIGH);
       digitalWrite(M22, LOW);
@@ -111,7 +106,7 @@ ISR (SPI_STC_vect)
       receivedone = true;
     }
     if(c=='E'){
-      analogWrite(speed1, 230); // Set rotating motor speed
+      analogWrite(speed1, 160); // Set rotating motor speed
       digitalWrite(M11, LOW);
       digitalWrite(M12, HIGH);
       digitalWrite(M22, LOW);
@@ -119,7 +114,7 @@ ISR (SPI_STC_vect)
       receivedone = true;
     }
     if(c=='R'){
-      analogWrite(speed1, 40); // Set rotating motor speed
+      analogWrite(speed1, 60); // Set rotating motor speed
       digitalWrite(M11, HIGH);
       digitalWrite(M12, LOW);
       digitalWrite(M22, LOW);
@@ -127,7 +122,7 @@ ISR (SPI_STC_vect)
       receivedone = true;
     }
     if(c=='T'){
-      analogWrite(speed1, 230); // Set rotating motor speed
+      analogWrite(speed1, 160); // Set rotating motor speed
       digitalWrite(M11, HIGH);
       digitalWrite(M12, LOW);
       digitalWrite(M22, LOW);
@@ -135,8 +130,7 @@ ISR (SPI_STC_vect)
       receivedone = true;
     }
     if(c=='S'){
-      analogWrite(speed1, 0); // Set rotating motor speed
-      analogWrite(speed2, 0); // Set rotating motor speed
+      
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
       digitalWrite(M22, LOW);
