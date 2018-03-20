@@ -66,7 +66,7 @@ ISR (SPI_STC_vect)
     //if (c == '\n'){     /* Check for newline character as end of msg */
     // receivedone = true;
     //}
-    if(c=='Fs')
+    if(c=='F')
     {
       analogWrite(speed2, 40); // Set rotating motor speed
       digitalWrite(M11, LOW);
@@ -75,7 +75,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, HIGH);
       receivedone = true; 
     }
-    if(c=='Ff')
+    if(c=='Q')
     {
       analogWrite(speed2, 230); // Set rotating motor speed
       digitalWrite(M11, LOW);
@@ -84,7 +84,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, HIGH);
       receivedone = true; 
     }
-    if(c=='Bs')
+    if(c=='B')
     {
       analogWrite(speed2, 40); // Set rotating motor speed 
       digitalWrite(M11, LOW);
@@ -93,7 +93,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, LOW);
       receivedone = true;
     }
-    if(c=='Bf')
+    if(c=='W')
     { 
       analogWrite(speed2, 230); // Set rotating motor speed 
       digitalWrite(M11, LOW);
@@ -102,7 +102,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, LOW);
       receivedone = true;
     }
-    if(c=='Ls'){
+    if(c=='L'){
       analogWrite(speed1, 40); // Set rotating motor speed
       digitalWrite(M11, LOW);
       digitalWrite(M12, HIGH);
@@ -110,7 +110,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, LOW);
       receivedone = true;
     }
-    if(c=='Lf'){
+    if(c=='E'){
       analogWrite(speed1, 230); // Set rotating motor speed
       digitalWrite(M11, LOW);
       digitalWrite(M12, HIGH);
@@ -118,7 +118,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, LOW);
       receivedone = true;
     }
-    if(c=='Rs'){
+    if(c=='R'){
       analogWrite(speed1, 40); // Set rotating motor speed
       digitalWrite(M11, HIGH);
       digitalWrite(M12, LOW);
@@ -126,7 +126,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, LOW);
       receivedone = true;
     }
-    if(c=='Rf'){
+    if(c=='T'){
       analogWrite(speed1, 230); // Set rotating motor speed
       digitalWrite(M11, HIGH);
       digitalWrite(M12, LOW);
