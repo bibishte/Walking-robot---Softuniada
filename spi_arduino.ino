@@ -1,5 +1,4 @@
 #include <SPI.h>
-
 const int M11 = 2;
 const int M12 = 4;
 const int M22 = 6;
@@ -35,6 +34,7 @@ void setup() {
    index = 0;
    receivedone = false;
    SPI.attachInterrupt();    /* Attach SPI interrupt */
+   attachInterrupt(sl, turn, FALLING);
    Serial.begin(115200);      // open the serial port at 115200 bps:
    
 
@@ -50,7 +50,8 @@ void loop() {
     receivedone = false;
     
   }
-   if((digitalRead(s)==LOW) || (digitalRead(sl)==LOW) || (digitalRead(sr)==LOW))
+   
+  /*if((digitalRead(s)==LOW) || (digitalRead(sl)==LOW) || (digitalRead(sr)==LOW))
    //if(digitalRead(sl)==LOW)
     {
       analogWrite(speed1, 60); // Set rotating motor speed
@@ -59,15 +60,15 @@ void loop() {
       digitalWrite(M22, LOW);
       digitalWrite(M21, LOW);
       //delay(1000);
-      //break;
+      return;
     }else
     {
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
       digitalWrite(M22, LOW);
       digitalWrite(M21, LOW);
-    }
-  
+      return;
+    }*/
   
 }
 
@@ -92,7 +93,7 @@ ISR (SPI_STC_vect)
       digitalWrite(M21, HIGH);
       receivedone = true; 
     }
-    if(c=='B')
+    if(c=='B' )
     {
       digitalWrite(M11, LOW);
       digitalWrite(M12, LOW);
@@ -145,5 +146,17 @@ ISR (SPI_STC_vect)
     delay(100);
   }
   
+  
   SREG = oldsrg;
+}
+
+
+
+void turn()
+{
+  analogWrite(speed1, 60); // Set rotating motor speed
+      digitalWrite(M11, LOW);
+      digitalWrite(M12, HIGH);
+      digitalWrite(M22, LOW);
+      digitalWrite(M21, LOW);
 }
