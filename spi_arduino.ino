@@ -3,9 +3,9 @@ const int M11 = 2;
 const int M12 = 4;
 const int M22 = 6;
 const int M21 = 7;
-const int speed1 = 3;
+const int speed1 = A4;
 const int sl = A0;
-const int s = A1;
+const int s = 3;
 const int sr = A2;
 char DM;
 int r, f, l;
@@ -34,7 +34,7 @@ void setup() {
    index = 0;
    receivedone = false;
    SPI.attachInterrupt();    /* Attach SPI interrupt */
-   attachInterrupt(sl, turn, FALLING);
+   attachInterrupt(s, turn, CHANGE);
    Serial.begin(115200);      // open the serial port at 115200 bps:
    
 
