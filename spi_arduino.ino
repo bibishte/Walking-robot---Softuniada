@@ -1,12 +1,12 @@
 #include <SPI.h>
-const int M11 = 2;
+const int M11 = A3;
 const int M12 = 4;
 const int M22 = 6;
 const int M21 = 7;
-const int speed1 = A4;
-const int sl = A0;
-const int s = 3;
-const int sr = A2;
+const int speed1 = 3;
+//const int sl = 2;
+    //const int s = 2;
+//const int sr = A2;
 char DM;
 int r, f, l;
 
@@ -14,6 +14,15 @@ int r, f, l;
 char buff [100];
 volatile byte index;
 volatile bool receivedone;  /* use reception complete flag */
+
+//void turn()
+//{
+//  analogWrite(speed1, 60); // Set rotating motor speed
+//      digitalWrite(M11, LOW);
+//      digitalWrite(M12, HIGH);
+//      digitalWrite(M22, LOW);
+//      digitalWrite(M21, LOW);
+//}
 
 void setup() {
    pinMode(M11, OUTPUT);
@@ -23,9 +32,9 @@ void setup() {
    pinMode(speed1, OUTPUT);
 
    
-   pinMode(sl, INPUT);
-   pinMode(s, INPUT);
-   pinMode(sr, INPUT);
+   //pinMode(sl, INPUT);
+   pinMode(2, INPUT);
+   //pinMode(sr, INPUT);
    
 
 
@@ -34,7 +43,7 @@ void setup() {
    index = 0;
    receivedone = false;
    SPI.attachInterrupt();    /* Attach SPI interrupt */
-   attachInterrupt(s, turn, CHANGE);
+   attachInterrupt(PD2, turn, FALLING);
    Serial.begin(115200);      // open the serial port at 115200 bps:
    
 
@@ -150,8 +159,6 @@ ISR (SPI_STC_vect)
   SREG = oldsrg;
 }
 
-
-
 void turn()
 {
   analogWrite(speed1, 60); // Set rotating motor speed
@@ -159,4 +166,7 @@ void turn()
       digitalWrite(M12, HIGH);
       digitalWrite(M22, LOW);
       digitalWrite(M21, LOW);
+      Serial.println("ennn");
 }
+
+
